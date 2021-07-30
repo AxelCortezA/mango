@@ -1,22 +1,21 @@
 use Mix.Config
 
-# Configure your database
-#
-# The MIX_TEST_PARTITION environment variable can be used
-# to provide built-in test partitioning in CI environment.
-# Run `mix help test` for more information.
-config :mango, Mango.Repo,
-  username: "postgres",
-  password: "postgres",
-  database: "mango_test#{System.get_env("MIX_TEST_PARTITION")}",
-  hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox
-
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
 config :mango, MangoWeb.Endpoint,
-  http: [port: 4002],
-  server: false
+  http: [port: 4001],
+  server: true
+
+config :hound, driver: "phantomjs"
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+# Configure your database
+config :mango, Mango.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  username: "postgres",
+  password: "genioseguro099",
+  database: "mango_test",
+  hostname: "localhost",
+  pool: Ecto.Adapters.SQL.Sandbox
